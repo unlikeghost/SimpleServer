@@ -1,7 +1,6 @@
 """Servidor basico con metodos post y get
     by.- Unlikeghost"""
 
-import sys
 import argparse
 from http.server import HTTPServer
 from http.server import BaseHTTPRequestHandler
