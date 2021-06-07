@@ -35,8 +35,6 @@ class Metodos(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(self.html("HOLAAAAA"))
 
-
-
     def do_POST(self):
         """Metodo POST"""
 
