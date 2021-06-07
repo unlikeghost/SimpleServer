@@ -11,7 +11,7 @@ PARSER = argparse.ArgumentParser(description="Servidor simple en localhost:80")
 PARSER.add_argument("-ip",
                     metavar="ip", type=str,
                     default="127.0.0.1",
-                    help="La ip donde gustes el servidor")
+                    help="La ip del servidor")
 
 
 PARSER.add_argument("-port",
