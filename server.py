@@ -1,8 +1,23 @@
 """Servidor basico con metodos post y get
     by.- Unlikeghost"""
 
+import sys
+import argparse
 from http.server import HTTPServer
 from http.server import BaseHTTPRequestHandler
+
+PARSER = argparse.ArgumentParser(description="Servidor simple en localhost:80")
+
+PARSER.add_argument("-ip",
+                    metavar="ip", type=str,
+                    default="127.0.0.1",
+                    help="La ip donde gustes el servidor")
+
+
+PARSER.add_argument("-port",
+                    metavar="port", type=int,
+                    default=80,
+                    help="Puerto del servidor")
 
 class Metodos(BaseHTTPRequestHandler):
     """Clase para majerar metodos"""
@@ -45,13 +60,16 @@ class Metodos(BaseHTTPRequestHandler):
         self.wfile.write(content)
 
 
-def runserver(ip="127.0.0.1",puerto=80):
+def runserver(ip="127.0.0.1",port=80):
     """Funcion principal"""
 
-    print(f"El servidor esta corriendo en {ip}:{80}")
-    address = (ip,puerto)
+    print(f"El servidor esta corriendo en {ip}:{port}")
+    address = (ip,port)
     httpd = HTTPServer(address, Metodos)
     httpd.serve_forever()
 
 if __name__ == "__main__":
-    runserver()
+    
+    args = PARSER.parse_args()
+
+    runserver(args.ip, args.port)
