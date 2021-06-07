@@ -7,11 +7,19 @@ from http.server import BaseHTTPRequestHandler
 class Metodos(BaseHTTPRequestHandler):
     """Clase para majerar metodos"""
 
+    def html(self, texto):
+        """Genera un html"""
+
+        content = f"<html><body><h1>{texto}</h1></body></html>"
+        return content.encode("utf8")
+
     def do_GET(self):
         """Metodo GET"""
 
         self.send_response(200)
         self.end_headers()
+        self.wfile.write(self.html("HOLAAAAA"))
+
 
 
     def do_POST(self):
@@ -40,6 +48,7 @@ class Metodos(BaseHTTPRequestHandler):
 def runserver(ip="127.0.0.1",puerto=80):
     """Funcion principal"""
 
+    print(f"El servidor esta corriendo en {ip}:{80}")
     address = (ip,puerto)
     httpd = HTTPServer(address, Metodos)
     httpd.serve_forever()
